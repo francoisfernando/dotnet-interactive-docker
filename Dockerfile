@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1
+FROM mcr.microsoft.com/dotnet/sdk:5.0
 
 RUN apt install -y --no-install-recommends wget && \
     apt autoremove -y && \
@@ -20,11 +20,11 @@ RUN rm ./anaconda.sh
 ENV PATH="/${HOME}/anaconda/bin:${PATH}"
 
 # Install .NET kernel
-RUN dotnet tool install -g --add-source "https://dotnet.myget.org/F/dotnet-try/api/v3/index.json" Microsoft.dotnet-interactive
+RUN dotnet tool install -g --add-source "https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-tools/nuget/v3/index.json" Microsoft.dotnet-interactive
 ENV PATH="/${HOME}/.dotnet/tools:${PATH}"
 ENV DOTNET_CLI_TELEMETRY_OPTOUT=1
 RUN dotnet interactive jupyter install
 
 # Run Jupyter Notebook
 EXPOSE 8888
-ENTRYPOINT ["jupyter", "notebook", "--no-browser", "--ip=0.0.0.0"]
+ENTRYPOINT ["jupyter", "lab", "--no-browser", "--ip=0.0.0.0"]
