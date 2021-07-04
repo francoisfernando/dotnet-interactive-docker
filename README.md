@@ -12,11 +12,14 @@ This repository contains a Dockerfile to allow users to run a *Jupyter* instance
 docker run -it --rm -p 8888:8888 -v ${PWD}:/home/user/local secana/dotnet-interactive:latest
 ```
 
-**Linux**:
+**Linux/OsX**:
 
 ```bash
 docker run -it --rm -p 8888:8888 -v ${PWD}:/home/user/local jupyter/secana/dotnet-interactive:latest
 ```
+
+NOTE: Notebooks created in ``/home/user` are not persisted, instead save them in `/home/user/local` which is mapped to the current dir above.
+changing the conatainer path in volume mapping gives an error.
 
 This mounts your current working directory to the *local* folder in the *Jupyter* instance. The output will look like below. To open the notebook, click on the link in the last line.
 

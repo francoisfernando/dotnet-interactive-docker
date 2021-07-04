@@ -17,11 +17,11 @@ RUN wget https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh -O 
 RUN chmod +x anaconda.sh
 RUN ./anaconda.sh -b -p $HOME/anaconda
 RUN rm ./anaconda.sh
-ENV PATH="/${HOME}/anaconda/bin:${PATH}"
+ENV PATH="${HOME}/anaconda/bin:${PATH}"
 
 # Install .NET kernel
 RUN dotnet tool install -g --add-source "https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-tools/nuget/v3/index.json" Microsoft.dotnet-interactive
-ENV PATH="/${HOME}/.dotnet/tools:${PATH}"
+ENV PATH="${HOME}/.dotnet/tools:${PATH}"
 ENV DOTNET_CLI_TELEMETRY_OPTOUT=1
 RUN dotnet interactive jupyter install
 
